@@ -32,16 +32,16 @@ const createUser = (user, res) => {
       else {
         let record = {
           username: user,
-          userID: shortid.generate(),
+          _id: shortid.generate(),
           timestamp: new Date(),
         }
         data.collection("users").insertOne(record, (err, doc) => {
           if (err) throw err;
           console.log(doc.ops)
-          // const { username, userID } = 
+          // const { username, _id } = 
           let newUser = {
             username: doc.ops[0].username,
-            userID: doc.ops[0].userID
+            _id: doc.ops[0]._id
           }
           res.send(newUser)
           conn.close();
@@ -57,21 +57,45 @@ const addExercise = (exercise, res) => {
     if (err) throw err
     else {
       const data = conn.db("exercisedb");
-      data.collection("users").findOne({ 'userID': userId }, (err, doc) => {
+      data.collection("users").findOne({ '_id': userId }, (err, doc) => {
       if (doc === null) { 
         res.send(`ERROR: userID "${userId}" does not exist`) 
       }
       else {
         data.collection("activities").insertOne(exercise, (err, doc) => {
           if (err) throw err;
-          console.log(doc.ops)
-        res.send(`add "${description}" workout`)
-        conn.close();
+          console.log(doc.ops[0])
+          res.send(doc.ops[0])
+          conn.close();
         })   
       }    
    })
   }
  })
+}
+
+const listUsers = (res) => {
+  MongoClient.connect(dbURI, (err, conn) => {
+    if (err) { throw err }
+    else {
+      const data = conn.db("exercisedb");
+      data.collection("users").find()
+        .toArray((err, results) => {
+          var displayList = [];
+          for (let i = 0; i < results.length; i++) {
+            let itemDict = {
+              username: results[i].username,
+              _id: results[i]._id,
+            }
+            displayList.push(itemDict);
+          }
+
+          res.send(displayList);
+        })
+
+      conn.close();
+    }
+  })
 }
 
 const displayUser = (user, res) => {
@@ -86,7 +110,7 @@ const displayUser = (user, res) => {
         if (doc != null) {
           let userData = {
             username: doc.username,
-            userID: doc.userID
+            _id: doc._id
           }
           res.send(userData);
         } else {
@@ -117,6 +141,10 @@ app.post('/api/exercise/add/', urlencodedParser, (req, res) => {
 
   addExercise(workout, res)
 });
+
+app.get('/api/exercise/users/', (req, res) => {
+  listUsers(res);
+})
 
 
 
