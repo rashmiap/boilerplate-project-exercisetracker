@@ -34,6 +34,7 @@ const createUser = (user, res) => {
           username: user,
           _id: shortid.generate(),
           timestamp: new Date(),
+          // activities: [],
         }
         data.collection("users").insertOne(record, (err, doc) => {
           if (err) throw err;
@@ -62,12 +63,13 @@ const addExercise = (exercise, res) => {
         res.send(`ERROR: userID "${userId}" does not exist`) 
       }
       else {
-        data.collection("activities").insertOne(exercise, (err, doc) => {
+        data.collection("users").update({_id: userId}, {$push: { activities: exercise } }, (err, doc) => {
+        // data.collection("activities").insertOne(exercise, (err, doc) => {
           if (err) throw err;
-          console.log(doc.ops[0])
-          res.send(doc.ops[0])
+          console.log(doc[0])
+          res.send(doc[0])
           conn.close();
-        })   
+        })
       }    
    })
   }
