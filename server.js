@@ -1,17 +1,12 @@
+require('dotenv').load();
+
 const express = require('express')
+const port = process.env.PORT || 3000
 const app = express()
-const bodyParser = require('body-parser')
 
-const cors = require('cors')
-
-const mongoose = require('mongoose')
-mongoose.connect(process.env.MLAB_URI || 'mongodb://localhost/exercise-track' )
-
-app.use(cors())
-
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
-
+const mongodb = require('mongodb')
+const MongoClient = mongodb.MongoClient
+const dbURI = 'mongodb://localhost:27017/exercisedb'
 
 app.use(express.static('public'))
 app.get('/', (req, res) => {
@@ -43,6 +38,6 @@ app.use((err, req, res, next) => {
     .send(errMessage)
 })
 
-const listener = app.listen(process.env.PORT || 3000, () => {
-  console.log('Your app is listening on port ' + listener.address().port)
+app.listen(port, () => {
+  console.log(`App is listening on port ${port}`);
 })
