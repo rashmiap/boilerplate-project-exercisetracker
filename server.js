@@ -4,40 +4,120 @@ const express = require('express')
 const port = process.env.PORT || 3000
 const app = express()
 
+const bodyParser = require('body-parser')
+const urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+const shortid = require('shortid')
+
+// const cors = require('cors')
+
+// const mongoose = require('mongoose')
+// mongoose.connect(process.env.MLAB_URI || 'mongodb://localhost/exercise-track')
+
+// app.use(cors())
+
 const mongodb = require('mongodb')
 const MongoClient = mongodb.MongoClient
 const dbURI = 'mongodb://localhost:27017/exercisedb'
 
-const createUser = (doc) => {
+const createUser = (user, res) => {
   MongoClient.connect(dbURI, (err, conn) => {
-    if (err) {
-      throw err
-    } else {
+    if (err) throw err
+    else {
       const data = conn.db("exercisedb");
-      data.collection("journal").insertOne(doc, (err, res) => {
-        if (err) throw err;
-        conn.close();
-      });
+      data.collection("users").findOne({ 'username': user }, (err, doc) => {
+      if (doc != null) { 
+        res.send(`username "${user}" already exists`) 
+      } 
+      else {
+        let record = {
+          username: user,
+          userID: shortid.generate(),
+          timestamp: new Date(),
+        }
+        data.collection("users").insertOne(record, (err, doc) => {
+          if (err) throw err;
+          console.log(doc.ops)
+          // const { username, userID } = 
+          let newUser = {
+            username: doc.ops[0].username,
+            userID: doc.ops[0].userID
+          }
+          res.send(newUser)
+          conn.close();
+        })
+      }
+    })
     }
   })
 }
+const addExercise = (exercise, res) => {
+  const { userId, description, duration, date } = exercise
+  MongoClient.connect(dbURI, (err, conn) => {
+    if (err) throw err
+    else {
+      const data = conn.db("exercisedb");
+      data.collection("users").findOne({ 'userID': userId }, (err, doc) => {
+      if (doc === null) { 
+        res.send(`ERROR: userID "${userId}" does not exist`) 
+      }
+      else {
+        data.collection("activities").insertOne(exercise, (err, doc) => {
+          if (err) throw err;
+          console.log(doc.ops)
+        res.send(`add "${description}" workout`)
+        conn.close();
+        })   
+      }    
+   })
+  }
+ })
+}
+
+const displayUser = (user, res) => {
+  MongoClient.connect(dbURI, (err, conn) => {
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      console.log('Connection established to', dbURI);
+      const data = conn.db("exercisedb"),
+        collection = data.collection("journal");
+      collection.findOne({ 'username': user }, (err, doc) => {
+        if (doc != null) {
+          let userData = {
+            username: doc.username,
+            userID: doc.userID
+          }
+          res.send(userData);
+        } else {
+          res.json({ error: "user not found in the database." });
+        }
+        conn.close();
+      });
+    }
+  });
+}
+
+// app.use(bodyParser.urlencoded({ extended: false }))
+// app.use(bodyParser.json())
 
 app.use(express.static('public'))
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
 });
 
-app.post('/api/exercise/new-user/', (req, res) => {
-  // var { search, offset } = req.query
-  // let record = {
-  //   search: search,
-  //   offset: offset,
-  //   timestamp: new Date(),
-  // }
-  // createUser(record);
-  console.log(req.query)
-  
+app.post('/api/exercise/new-user/', urlencodedParser, (req, res) => {
+  const { username } = req.body
+  createUser(username, res)
 });
+
+app.post('/api/exercise/add/', urlencodedParser, (req, res) => {
+  let workout = req.body
+  console.log(workout)
+
+  addExercise(workout, res)
+});
+
 
 
 // Not found middleware
