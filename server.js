@@ -8,9 +8,35 @@ const mongodb = require('mongodb')
 const MongoClient = mongodb.MongoClient
 const dbURI = 'mongodb://localhost:27017/exercisedb'
 
+const createUser = (doc) => {
+  MongoClient.connect(dbURI, (err, conn) => {
+    if (err) {
+      throw err
+    } else {
+      const data = conn.db("exercisedb");
+      data.collection("journal").insertOne(doc, (err, res) => {
+        if (err) throw err;
+        conn.close();
+      });
+    }
+  })
+}
+
 app.use(express.static('public'))
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html')
+});
+
+app.post('/api/exercise/new-user/', (req, res) => {
+  // var { search, offset } = req.query
+  // let record = {
+  //   search: search,
+  //   offset: offset,
+  //   timestamp: new Date(),
+  // }
+  // createUser(record);
+  console.log(req.query)
+  
 });
 
 
