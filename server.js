@@ -118,7 +118,7 @@ const listUsers = (res) => {
   })
 }
 
-const displayUser = (userId, startDate, endDate, res) => {
+const displayUser = (userId, startDate, endDate, limit, res) => {
   MongoClient.connect(dbURI, (err, conn) => {
     if (err) throw err
     else {
@@ -126,7 +126,7 @@ const displayUser = (userId, startDate, endDate, res) => {
       const userData = data.collection("users").find({"_id": userId})
       userData.toArray((err, results) => {
         if (err) throw err
-        
+
         if (results.length < 1) {
           res.json({ ERROR: "User not found in the database." })
         } else {
@@ -134,11 +134,20 @@ const displayUser = (userId, startDate, endDate, res) => {
             if (startDate !== '' && endDate !== '') {
               var log = result.activities.filter(activity => { return activity.date >= startDate && activity.date <= endDate })
             } else { var log = result.activities }
+            var journal = []
+            if (limit > '') {
+              var loopLength = log.length - (log.length - limit)
+            } else {
+              var loopLength = log.length
+            }
+            for (i = 0; i < loopLength; i++) {
+              journal.push(log[i])
+            }
             return {
               "username": result.username,
               "_id": result._id,
-              "count": log.length,
-              "activities": log,
+              "count": journal.length,
+              "activities": journal,
             }
           })
 
@@ -174,10 +183,10 @@ app.get('/api/exercise/users/', (req, res) => {
 })
 
 app.get('/api/exercise/log', (req, res) => {
-  var { userId, startDate, endDate } = req.query
+  var { userId, startDate, endDate, limit } = req.query
   // var user = req.query.userId
   // res.send(user)
-  displayUser(userId, startDate, endDate, res);
+  displayUser(userId, startDate, endDate, limit, res);
 })
 
 
