@@ -125,17 +125,16 @@ const displayUser = (userId, res) => {
       const data = conn.db("exercisedb");
       const userData = data.collection("users").find({"_id": userId})
       userData.toArray((err, results) => {
-        if (results !== null) {
-          var displayList = [];
-          for (let i = 0; i < results.length; i++) {
-            let itemDict = {
-              username: results[i].username,
-              _id: results[i]._id,
-              count: results[i].activities.length,
-              activities: results[i].activities,
+        if (err) throw err
+        else if (results !== null) {
+          var displayList = results.map(result => {
+            return {
+              "username": result.username,
+              "_id": result._id,
+              "count": result.activities.length,
+              "activities": result.activities,
             }
-            displayList.push(itemDict);
-          }
+          })
 
           res.send(displayList);
         } else {
@@ -147,30 +146,6 @@ const displayUser = (userId, res) => {
     }
   })
 }
-
-// const displayUserOrig = (user, res) => {
-//   MongoClient.connect(dbURI, (err, conn) => {
-//     if (err) {
-//       console.log('Unable to connect to the mongoDB server. Error:', err);
-//     } else {
-//       console.log('Connection established to', dbURI);
-//       const data = conn.db("exercisedb"),
-//         collection = data.collection("journal");
-//       collection.findOne({ 'username': user }, (err, doc) => {
-//         if (doc != null) {
-//           let userData = {
-//             username: doc.username,
-//             _id: doc._id
-//           }
-//           res.send(userData);
-//         } else {
-//           res.json({ error: "user not found in the database." });
-//         }
-//         conn.close();
-//       });
-//     }
-//   });
-// }
 
 // app.use(bodyParser.urlencoded({ extended: false }))
 // app.use(bodyParser.json())
