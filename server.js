@@ -118,9 +118,9 @@ const listUsers = (res) => {
   })
 }
 
-const displayUser = (userId, res) => {
+const displayUser = (userId, startDate, endDate, res) => {
   MongoClient.connect(dbURI, (err, conn) => {
-    if (err) { throw err }
+    if (err) throw err
     else {
       const data = conn.db("exercisedb");
       const userData = data.collection("users").find({"_id": userId})
@@ -128,11 +128,15 @@ const displayUser = (userId, res) => {
         if (err) throw err
         else if (results !== null) {
           var displayList = results.map(result => {
+            if (startDate !== '' && endDate !== '') {
+            var log = result.activities.filter(activity => {return activity.date >= startDate && activity.date <= endDate })
+            } else { var log = result.activities }
+            console.log(log.length)
             return {
               "username": result.username,
               "_id": result._id,
-              "count": result.activities.length,
-              "activities": result.activities,
+              "count": log.length,
+              "activities": log,
             }
           })
 
@@ -170,10 +174,11 @@ app.get('/api/exercise/users/', (req, res) => {
 })
 
 app.get('/api/exercise/log', (req, res) => {
-  var user = req.query.userId
-  console.log(user)
+  var { userId, startDate, endDate } = req.query
+  // var user = req.query.userId
+  console.log(userId, startDate, endDate)
   // res.send(user)
-  displayUser(user, res);
+  displayUser(userId, startDate, endDate, res);
 })
 
 
