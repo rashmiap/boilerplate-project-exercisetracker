@@ -68,8 +68,12 @@ const addExercise = (exercise, res) => {
             var exerciseDate = new Date();
             var exerciseDate = exerciseDate.toISOString().slice(0, 10);
           } else { var exerciseDate = exercise.date }
-
-          data.collection("users").update({ _id: userId }, { $push: { activities: exercise } }, (err, doc) => {
+          let workout = {
+            description: description,
+            duration: duration,
+            date: exerciseDate,
+          }
+          data.collection("users").update({ _id: userId }, { $push: { activities: workout } }, (err, doc) => {
             // data.collection("activities").insertOne(exercise, (err, doc) => {
             if (err) throw err;
             let workout = {
@@ -114,29 +118,59 @@ const listUsers = (res) => {
   })
 }
 
-const displayUser = (user, res) => {
+const displayUser = (userId, res) => {
   MongoClient.connect(dbURI, (err, conn) => {
-    if (err) {
-      console.log('Unable to connect to the mongoDB server. Error:', err);
-    } else {
-      console.log('Connection established to', dbURI);
-      const data = conn.db("exercisedb"),
-        collection = data.collection("journal");
-      collection.findOne({ 'username': user }, (err, doc) => {
-        if (doc != null) {
-          let userData = {
-            username: doc.username,
-            _id: doc._id
+    if (err) { throw err }
+    else {
+      const data = conn.db("exercisedb");
+      data.collection("users").find({"_id": userId})
+        .toArray((err, results) => {
+          if (results !== null) {
+            var displayList = [];
+            for (let i = 0; i < results.length; i++) {
+              let itemDict = {
+                username: results[i].username,
+                _id: results[i]._id,
+                count: results[i].activities.length,
+                activities: results[i].activities,
+              }
+              displayList.push(itemDict);
+            }
+
+            res.send(displayList);
+          } else {
+            res.json({ error: "user not found in the database." });
           }
-          res.send(userData);
-        } else {
-          res.json({ error: "user not found in the database." });
-        }
-        conn.close();
-      });
+        })
+
+      conn.close();
     }
-  });
+  })
 }
+
+// const displayUserOrig = (user, res) => {
+//   MongoClient.connect(dbURI, (err, conn) => {
+//     if (err) {
+//       console.log('Unable to connect to the mongoDB server. Error:', err);
+//     } else {
+//       console.log('Connection established to', dbURI);
+//       const data = conn.db("exercisedb"),
+//         collection = data.collection("journal");
+//       collection.findOne({ 'username': user }, (err, doc) => {
+//         if (doc != null) {
+//           let userData = {
+//             username: doc.username,
+//             _id: doc._id
+//           }
+//           res.send(userData);
+//         } else {
+//           res.json({ error: "user not found in the database." });
+//         }
+//         conn.close();
+//       });
+//     }
+//   });
+// }
 
 // app.use(bodyParser.urlencoded({ extended: false }))
 // app.use(bodyParser.json())
@@ -158,6 +192,13 @@ app.post('/api/exercise/add/', urlencodedParser, (req, res) => {
 
 app.get('/api/exercise/users/', (req, res) => {
   listUsers(res);
+})
+
+app.get('/api/exercise/log', (req, res) => {
+  var user = req.query.userId
+  console.log(user)
+  // res.send(user)
+  displayUser(user, res);
 })
 
 
