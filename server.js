@@ -38,7 +38,6 @@ const createUser = (user, res) => {
         }
         data.collection("users").insertOne(record, (err, doc) => {
           if (err) throw err;
-          console.log(doc.ops)
           // const { username, _id } = 
           let newUser = {
             username: doc.ops[0].username,
@@ -59,6 +58,7 @@ const addExercise = (exercise, res) => {
     else {
       const data = conn.db("exercisedb");
       data.collection("users").findOne({ '_id': userId }, (err, doc) => {
+        const user = doc.username
       if (doc === null) { 
         res.send(`ERROR: userID "${userId}" does not exist`) 
       }
@@ -66,8 +66,17 @@ const addExercise = (exercise, res) => {
         data.collection("users").update({_id: userId}, {$push: { activities: exercise } }, (err, doc) => {
         // data.collection("activities").insertOne(exercise, (err, doc) => {
           if (err) throw err;
-          console.log(doc[0])
-          res.send(doc[0])
+          let workout = {
+            username: user,
+            description: description,
+            duratin: duration,
+            _id: userId,
+            date: date,
+          }
+        
+          console.log(workout)
+          res.send(workout)
+
           conn.close();
         })
       }    
@@ -139,8 +148,6 @@ app.post('/api/exercise/new-user/', urlencodedParser, (req, res) => {
 
 app.post('/api/exercise/add/', urlencodedParser, (req, res) => {
   let workout = req.body
-  console.log(workout)
-
   addExercise(workout, res)
 });
 
