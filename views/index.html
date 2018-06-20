@@ -33,8 +33,8 @@
           <form action="/api/exercise/log">
             <h3>Get User's Exercise Log</h3>
             <input id="uidlog" type="text" name="userId" placeholder="userId*">
-            <input id="fromDat" type="date" name="fromDate" placeholder="date (yyyy-mm-dd)">
-            <input id="toDat" type="date" name="toDate" placeholder="date (yyyy-mm-dd)">
+            <input id="fromDat" type="date" name="startDate" placeholder="date (yyyy-mm-dd)">
+            <input id="toDat" type="date" name="endDate" placeholder="date (yyyy-mm-dd)">
             <input type="submit" value="Submit">
           </form>
           <p><strong>GET users's exercise log: </strong><code>GET /api/exercise/log?{userId}[&amp;from][&amp;to][&amp;limit]</code></p>
