@@ -126,12 +126,14 @@ const displayUser = (userId, startDate, endDate, res) => {
       const userData = data.collection("users").find({"_id": userId})
       userData.toArray((err, results) => {
         if (err) throw err
-        else if (results !== null) {
+        
+        if (results.length < 1) {
+          res.json({ ERROR: "User not found in the database." })
+        } else {
           var displayList = results.map(result => {
             if (startDate !== '' && endDate !== '') {
-            var log = result.activities.filter(activity => {return activity.date >= startDate && activity.date <= endDate })
+              var log = result.activities.filter(activity => { return activity.date >= startDate && activity.date <= endDate })
             } else { var log = result.activities }
-            console.log(log.length)
             return {
               "username": result.username,
               "_id": result._id,
@@ -141,8 +143,6 @@ const displayUser = (userId, startDate, endDate, res) => {
           })
 
           res.send(displayList);
-        } else {
-          res.json({ error: "user not found in the database." });
         }
       })
 
@@ -176,7 +176,6 @@ app.get('/api/exercise/users/', (req, res) => {
 app.get('/api/exercise/log', (req, res) => {
   var { userId, startDate, endDate } = req.query
   // var user = req.query.userId
-  console.log(userId, startDate, endDate)
   // res.send(user)
   displayUser(userId, startDate, endDate, res);
 })
