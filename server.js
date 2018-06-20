@@ -12,7 +12,6 @@ const shortid = require('shortid')
 // const cors = require('cors')
 
 // const mongoose = require('mongoose')
-// mongoose.connect(process.env.MLAB_URI || 'mongodb://localhost/exercise-track')
 
 // app.use(cors())
 
@@ -34,11 +33,9 @@ const createUser = (user, res) => {
           username: user,
           _id: shortid.generate(),
           timestamp: new Date(),
-          // activities: [],
         }
         data.collection("users").insertOne(record, (err, doc) => {
           if (err) throw err;
-          // const { username, _id } = 
           let newUser = {
             username: doc.ops[0].username,
             _id: doc.ops[0]._id
@@ -74,7 +71,6 @@ const addExercise = (exercise, res) => {
             date: exerciseDate,
           }
           data.collection("users").update({ _id: userId }, { $push: { activities: workout } }, (err, doc) => {
-            // data.collection("activities").insertOne(exercise, (err, doc) => {
             if (err) throw err;
             let workout = {
               username: user,
@@ -187,8 +183,6 @@ app.get('/api/exercise/users/', (req, res) => {
 
 app.get('/api/exercise/log', (req, res) => {
   var { userId, startDate, endDate, limit } = req.query
-  // var user = req.query.userId
-  // res.send(user)
   displayUser(userId, startDate, endDate, limit, res);
 })
 
