@@ -52,37 +52,42 @@ const createUser = (user, res) => {
   })
 }
 const addExercise = (exercise, res) => {
-  const { userId, description, duration, date } = exercise
+  const { userId, description, duration } = exercise
   MongoClient.connect(dbURI, (err, conn) => {
     if (err) throw err
     else {
       const data = conn.db("exercisedb");
       data.collection("users").findOne({ '_id': userId }, (err, doc) => {
         const user = doc.username
-      if (doc === null) { 
-        res.send(`ERROR: userID "${userId}" does not exist`) 
-      }
-      else {
-        data.collection("users").update({_id: userId}, {$push: { activities: exercise } }, (err, doc) => {
-        // data.collection("activities").insertOne(exercise, (err, doc) => {
-          if (err) throw err;
-          let workout = {
-            username: user,
-            description: description,
-            duratin: duration,
-            _id: userId,
-            date: date,
-          }
-        
-          console.log(workout)
-          res.send(workout)
+        if (doc === null) {
+          res.send(`ERROR: userID "${userId}" does not exist`)
+        }
+        else {
+          // Auto-popluate date field with current date
+          if (exercise.date === '') {
+            var exerciseDate = new Date();
+            var exerciseDate = exerciseDate.toISOString().slice(0, 10);
+          } else { var exerciseDate = exercise.date }
 
-          conn.close();
-        })
-      }    
-   })
-  }
- })
+          data.collection("users").update({ _id: userId }, { $push: { activities: exercise } }, (err, doc) => {
+            // data.collection("activities").insertOne(exercise, (err, doc) => {
+            if (err) throw err;
+            let workout = {
+              username: user,
+              description: description,
+              duratin: duration,
+              _id: userId,
+              date: exerciseDate,
+            }
+            res.send(workout)
+
+            conn.close();
+          })
+        }
+      })
+    }
+  })
+
 }
 
 const listUsers = (res) => {
