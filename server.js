@@ -130,15 +130,15 @@ const displayUser = (userId, startDate, endDate, limit, res) => {
         if (results.length < 1) {
           res.json({ ERROR: "User not found in the database." })
         } else {
+          var journal = []
           var displayList = results.map(result => {
             if (startDate !== '' && endDate !== '') {
               var log = result.activities.filter(activity => { return activity.date >= startDate && activity.date <= endDate })
             } else { var log = result.activities }
-            var journal = []
             if (limit > '') {
               var loopLength = log.length - (log.length - limit)
             } else {
-              var loopLength = log.length
+                var loopLength = log.length
             }
             for (i = 0; i < loopLength; i++) {
               journal.push(log[i])
@@ -150,8 +150,11 @@ const displayUser = (userId, startDate, endDate, limit, res) => {
               "activities": journal,
             }
           })
-
-          res.send(displayList);
+          if (journal.length < 1) {
+            res.send({ERROR: "There are no activity records in the specified dates "})
+          } else { 
+              res.send(displayList) 
+          }
         }
       })
 
