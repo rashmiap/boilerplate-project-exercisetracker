@@ -1,6 +1,6 @@
 {
 	"name": "fcc-exercise-tracker",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "A REST API project, part of Free Code Camp's curriculum",
 	"main": "server.js",
 	"scripts": {
@@ -14,7 +14,7 @@
 		"express": "^4.14.0",
 		"mongodb": "^2.2.14",
 		"mongoose": "^4.7.2",
-		"shortid": "^2.2.6"
+		"shortid": "^2.2.8"
 	},
 	"engines": {
 		"node": "6.9.1"
