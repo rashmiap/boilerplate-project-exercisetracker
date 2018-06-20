@@ -123,25 +123,25 @@ const displayUser = (userId, res) => {
     if (err) { throw err }
     else {
       const data = conn.db("exercisedb");
-      data.collection("users").find({"_id": userId})
-        .toArray((err, results) => {
-          if (results !== null) {
-            var displayList = [];
-            for (let i = 0; i < results.length; i++) {
-              let itemDict = {
-                username: results[i].username,
-                _id: results[i]._id,
-                count: results[i].activities.length,
-                activities: results[i].activities,
-              }
-              displayList.push(itemDict);
+      const userData = data.collection("users").find({"_id": userId})
+      userData.toArray((err, results) => {
+        if (results !== null) {
+          var displayList = [];
+          for (let i = 0; i < results.length; i++) {
+            let itemDict = {
+              username: results[i].username,
+              _id: results[i]._id,
+              count: results[i].activities.length,
+              activities: results[i].activities,
             }
-
-            res.send(displayList);
-          } else {
-            res.json({ error: "user not found in the database." });
+            displayList.push(itemDict);
           }
-        })
+
+          res.send(displayList);
+        } else {
+          res.json({ error: "user not found in the database." });
+        }
+      })
 
       conn.close();
     }
