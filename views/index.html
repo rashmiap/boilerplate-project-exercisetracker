@@ -13,7 +13,7 @@
     <div class="page-header">
       <!-- Logo -->
       <div id="logo" class="brand">
-        <a href="#top">Exercise Journal</a>
+        <a href="#top">Wilfred Morgan</a>
       </div>
       <!-- Navigation Menu -->
       <nav class="navbar">
@@ -60,9 +60,30 @@
     </div>
     <!-- Home Page -->
     <section id="home">
-      <!-- <div class="container"> -->
-        <h1 id="headline">Exercise tracker</h1>
-      <!-- </div> -->
+      <div class="container">
+        <h1 id="headline">Exercise Journal</h1>
+        <h3 id="subtitle">An online app that records exercise activity</h3>
+            <h4 class="section-title">User Stories:</h4>
+            <div class="section-text">
+              <ol>
+                <li>
+                   I can create a user by posting form data username to /api/exercise/new-user and returned will be an object with username
+                  and _id.
+                </li>
+                <li>
+                   I can get an array of all users by getting api/exercise/users with the same info as when creating a user.
+                </li>
+                <li>
+                   I can retrieve a full exercise log of any user by getting /api/exercise/log with a parameter of userId(_id). App will return
+                  the user object with added array log and count (total exercise count).
+                </li>
+                <li>
+                   I can retrieve part of the log of any user by also passing along optional parameters of from & to or limit. (Date format
+                  yyyy-mm-dd, limit = int)
+                </li>
+              </ol>
+            </div>
+      </div>
     </section>
     
     <div class="container" id="main">
