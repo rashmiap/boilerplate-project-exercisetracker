@@ -128,7 +128,6 @@ code {
   font-weight: bold;
   color: var(--text-primary-color);
   letter-spacing: 0.068em;
-  padding: 1.15rem 0 0 1rem;
   text-decoration: none;
   text-align: left;
 }
@@ -249,11 +248,11 @@ nav {
   /* color: var(--text-primary-color);
   background: var(--default-primary-color); */
   text-align: center; 
-  padding: 5rem;
+  padding: 10vh 10vw;
 }
 
 #headline {
-  font-size: 3rem;
+  font-size: 9vh;
   text-transform: uppercase;
 }
 
@@ -268,8 +267,7 @@ nav {
 
 /*-----section----*/
 section {
-  /* letter-spacing: 0.042rem; */
-  margin: 2rem auto;
+  margin: 10vh auto;
 }
 
 section .container {
@@ -298,11 +296,18 @@ section .container {
   padding-bottom: 1rem;
 }
 
-
-
 /*------Responsive design------*/
 @media only screen and (max-width: 568px) {
-  /*----navigation----*/
+  nav {
+    padding: 0 0.5rem;
+  }
+
+  /*----home----*/
+  .brand a {
+    font-size: 1rem;
+  }
+
+    /*----navigation----*/
   .brand {
     text-align: center;
   }
@@ -314,37 +319,13 @@ section .container {
     grid-column-gap: 0;
   }
 
+  #headline {
+    font-size: 5vh;
+  }
+
   /*----section----*/
   .section-text {
-    padding: 0 3.5vw;
-  }
-
-  h1 {
-    font-size: 1.45rem;
-  }
-
-  h2 {
-    font-size: 1.25rem;
-  }
-
-  h3 {
-    font-size: 1rem;
-  }
-
-  h4 {
-    font-size: 0.95rem;
-  }
-
-  body {
-    font-size: 0.95rem;
-  }
-
-  nav {
-    padding: 0 0.5rem;
-  }
-
-  #logo a {
-    font-size: 1rem;
+    padding: 0 2.775vw;
   }
 
 }
