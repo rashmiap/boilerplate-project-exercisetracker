@@ -57,11 +57,13 @@ const addExercise = (exercise, res) => {
     else {
       const data = conn.db("wme-exercisedb");
       data.collection("journal").findOne({ '_id': userId }, (err, doc) => {
-        const user = doc.username
+        if (err) throw err
+        
         if (doc === null) {
           res.send(`ERROR: userID "${userId}" does not exist`)
         }
         else {
+          const user = doc.username
           // Auto-popluate date field with current date
           if (exercise.date === '') {
             var exerciseDate = new Date();
