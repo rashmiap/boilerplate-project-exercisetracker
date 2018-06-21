@@ -61,10 +61,11 @@ p {
 }
 
 form {
-  margin-bottom: 25px;
+  margin: 0 auto;
+  /* margin-bottom: 25px; */
   padding: 15px;
   background-color: #87D37C;
-  display: inline-block;
+  display: block;
   width: 100%;
   max-width: 340px;
   border-radius: 5px;
@@ -100,38 +101,66 @@ code {
   padding: 2px;
 }
 
-/*-----nav-----*/
-nav {
-  background-color: var(--dark-primary-color);
-  display: flex;
-  justify-content: space-between;
+/*-----page header-----*/
+.page-header {
   width: 100%;
   z-index: 5;
   overflow: hidden;
   position: fixed;
   top: 0; 
   text-transform: uppercase;
-  padding: 0 2rem;
+
 }
 
-nav * {
+/*----logo----*/
+.brand {
+  display: block;
+  font-weight: bold;
+  background: var(--default-primary-color);
+  text-transform: uppercase;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+.brand a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-primary-color);
+  letter-spacing: 0.068em;
+  padding: 1.15rem 0 0 1rem;
+  text-decoration: none;
+  text-align: left;
+}
+
+/*----nav----*/
+nav {
+  background-color: var(--dark-primary-color);
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: .5rem 2rem;
+}
+
+.navbar-nav * {
   display: block;
   color: var(--text-primary-color);
-  font-size: 0.75rem;
+  font-size: 0.6rem;
   letter-spacing: 0.15em;
 }
 
-nav a {
-  text-decoration: none;
+.navbar-nav {
+  display: flex;
+  margin: 0 auto;
 }
 
-
-nav ul {
+.navbar-nav ul {
   margin: 0;
   list-style: none;
 }
 
 .navbar-nav a {
+  text-decoration: none;
+  text-align: center;
   padding: 0.25rem 0.68rem;
   border-radius: 0.3125rem;
 }
@@ -140,38 +169,19 @@ nav ul {
 .nav-link.active {
   border-bottom: 2px solid var(--text-primary-color);
   border-radius: 0%;
-  /* background-color: var(--text-primary-color);
-  color: var(--dark-primary-color); */
-}
-
-.brand {
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-#logo {
-  width: 50vw;
-}
-
-#logo a {
-  font-size: 1.5rem;
-  font-weight: bold;
-  letter-spacing: 0.068em;
-  padding: 1.15rem 0 0 1rem;
-  text-align: left;
-}
-
-.navbar-nav {
-  text-align: right;
-  display: flex;
-  padding: 1.5rem 0 0 0;
 }
 
 #menu-small {
   display: none;
   color: var(--text-primary-color);
   font-size: 1.625rem;
-  padding: .8rem;
+  text-align: right;
+  justify-self: end;
+}
+
+.menu-title {
+  font-size: .85rem;
+  margin: auto;
 }
 
 .side-nav {
@@ -228,10 +238,10 @@ nav ul {
 #home {
   width: 100vw;
   overflow: hidden; 
-  color: var(--text-primary-color);
-  background: var(--default-primary-color);
+  /* color: var(--text-primary-color);
+  background: var(--default-primary-color); */
   text-align: center; 
-  padding: 7rem 5rem;
+  padding: 5rem;
 }
 
 #headline {
@@ -251,7 +261,7 @@ nav ul {
 /*-----section----*/
 section {
   /* letter-spacing: 0.042rem; */
-  margin: 2rem auto;
+  margin: 0 auto;
 }
 
 section .container {
@@ -277,83 +287,31 @@ section .container {
   text-transform: uppercase;
   max-width: 991px;
   color: var(--dark-primary-color);
-  padding-top: 5rem;
+  /* padding-top: 5rem; */
   padding-bottom: 1rem;
 }
 
 
 
 /*------Responsive design------*/
-/* LARGE SCREENS */
-@media only screen and (min-width: 991px) {
-  .section-title {
-    font-size: 2rem;
-  }
-}
-
-@media only screen and (max-width: 991px) {
-  header p {
-    width: 100%;
-  }
-
-}
-
-/* MEDIUM SCREENS */
-@media only screen and (min-width: 568px) {
-  /*----sections----*/
-  .section-title {
-    font-size: 1.65rem;
-  }
-}
-
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 568px) {
   /*----navigation----*/
+  .brand {
+    text-align: center;
+  }
   .navbar-nav {display: none;}
   
-  #menu-small {display: block;}
+  #menu-small {
+    display: grid;
+    grid-template-columns: repeat(2, 2.15rem);
+    grid-column-gap: 0;
+  }
 
   /*----section----*/
   .section-text {
     padding: 0 3.5vw;
   }
-}
 
-@media only screen and (min-width: 768px) {
-  h1 {
-    font-size: 1.75rem;
-  }
-
-  h2 {
-    font-size: 1.50rem;
-  }
-
-  h3 {
-    font-size: 1.25rem;
-  }
-
-  h4 {
-    font-size: 1rem;
-  }
-
-  body {
-    font-size: 1rem;
-  }
-
-  header {
-    width: 96%;
-    margin: 30px auto 100px auto;
-    text-align: left;
-  }
-
-    /*----sections----*/
-  h2.section-title {
-    font-size: 1.75rem;
-  }
-
-}
-
-/* SMALL SCREENS */
-@media only screen and (max-width: 568px) {
   h1 {
     font-size: 1.45rem;
   }
@@ -381,9 +339,5 @@ section .container {
   #logo a {
     font-size: 1rem;
   }
-
-  .navbar-nav {display: none;}
-  
-  #menu-small {display: block;}
 
 }

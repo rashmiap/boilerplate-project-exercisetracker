@@ -1,39 +1,50 @@
 <!DOCTYPE html>
 <html>
-
   <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Exercise Journal</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
     <link href="style.css" rel="stylesheet" type="text/css">
   </head>
-
    <body>
-    <!-- Navigation Menu -->
-    <nav class="navbar">
+    <!-- Page Header -->
+    <div class="page-header">
+      <!-- Logo -->
       <div id="logo" class="brand">
         <a href="#top">Exercise Journal</a>
       </div>
-      <ul class="navbar-nav">
-        <li>
-          <a href="#add-user" class="nav-link">Add User</a>
-        </li>
-        <li>
-          <a href="#add-exercise" class="nav-link">Add Exercise</a>
-        </li>
-        <li>
-          <a href="#list-users" class="nav-link">Users</a>
-        </li>
-        <li>
-          <a href="#journal" class="nav-link contact-btn">View Journal</a>
-        </li>
-      </ul>
-      <!-- Side Navigation Menu (for smaller screens) -->
-      <div id="menu-small">&#9776;</div>
-    
-    </nav>
+      <!-- Navigation Menu -->
+      <nav class="navbar">
+        <ul class="navbar-nav">
+          <li>
+            <a href="/" class="nav-link">Home</a>
+          </li>
+          <li>
+            <a href="#add-user" class="nav-link">Add User</a>
+          </li>
+          <li>
+            <a href="#add-exercise" class="nav-link">Add Exercise</a>
+          </li>
+          <li>
+            <a href="#list-users" class="nav-link">Users</a>
+          </li>
+          <li>
+            <a href="#journal" class="nav-link contact-btn">View Journal</a>
+          </li>
+        </ul>
+        <!-- Side Navigation Menu (for smaller screens) -->
+        <div id="menu-small">
+          <span class="menu-title">Menu</span> &#9776;
+        </div>
+      
+      </nav>
+    </div>
+
     <!-- Side Navigation Menu -->
     <div id="side-menu" class="side-nav">
-      <!-- <a href="" id="close-slide">&times;</a> -->
+      <a href="" id="close-slide">&times;</a>
       <div class="form-header">
         <p class="brand">
           <a href="#top">Exercise Journal</a>
@@ -41,6 +52,7 @@
         <i id="close-slide" class="far fa-times-circle"></i>
       </div>
       <hr>
+      <a href="/" class="nav-link side-nav-link">Home</a>
       <a href="#add-user" class="nav-link side-nav-link">Add User</a>
       <a href="#add-exercise" class="nav-link side-nav-link">Add Exercise</a>
       <a href="#users" class="nav-link side-nav-link">Users</a>
@@ -115,5 +127,7 @@
         </div>
       </section>
     </div>
+      <!-- Custom script -->
+    <script src="script.js"></script>
   </body>
 </html>
