@@ -18,13 +18,14 @@ const shortid = require('shortid')
 const mongodb = require('mongodb')
 const MongoClient = mongodb.MongoClient
 const dbURI = 'mongodb://localhost:27017/exercisedb'
+// const dbURI = process.env.DBCONNECT
 
 const createUser = (user, res) => {
   MongoClient.connect(dbURI, (err, conn) => {
     if (err) throw err
     else {
       const data = conn.db("exercisedb");
-      data.collection("users").findOne({ 'username': user }, (err, doc) => {
+      data.collection("journal").findOne({ 'username': user }, (err, doc) => {
       if (doc != null) { 
         res.send(`username "${user}" already exists`) 
       } 
@@ -34,7 +35,7 @@ const createUser = (user, res) => {
           _id: shortid.generate(),
           timestamp: new Date(),
         }
-        data.collection("users").insertOne(record, (err, doc) => {
+        data.collection("journal").insertOne(record, (err, doc) => {
           if (err) throw err;
           let newUser = {
             username: doc.ops[0].username,
@@ -54,7 +55,7 @@ const addExercise = (exercise, res) => {
     if (err) throw err
     else {
       const data = conn.db("exercisedb");
-      data.collection("users").findOne({ '_id': userId }, (err, doc) => {
+      data.collection("journal").findOne({ '_id': userId }, (err, doc) => {
         const user = doc.username
         if (doc === null) {
           res.send(`ERROR: userID "${userId}" does not exist`)
@@ -70,7 +71,7 @@ const addExercise = (exercise, res) => {
             duration: duration,
             date: exerciseDate,
           }
-          data.collection("users").update({ _id: userId }, { $push: { activities: workout } }, (err, doc) => {
+          data.collection("journal").update({ _id: userId }, { $push: { activities: workout } }, (err, doc) => {
             if (err) throw err;
             let workout = {
               username: user,
@@ -95,7 +96,7 @@ const listUsers = (res) => {
     if (err) { throw err }
     else {
       const data = conn.db("exercisedb");
-      data.collection("users").find()
+      data.collection("journal").find()
         .toArray((err, results) => {
           var displayList = [];
           for (let i = 0; i < results.length; i++) {
@@ -119,7 +120,7 @@ const displayUser = (userId, startDate, endDate, limit, res) => {
     if (err) throw err
     else {
       const data = conn.db("exercisedb");
-      const userData = data.collection("users").find({"_id": userId})
+      const userData = data.collection("journal").find({"_id": userId})
       userData.toArray((err, results) => {
         if (err) throw err
 
