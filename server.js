@@ -17,14 +17,15 @@ const shortid = require('shortid')
 
 const mongodb = require('mongodb')
 const MongoClient = mongodb.MongoClient
-const dbURI = 'mongodb://localhost:27017/exercisedb'
-// const dbURI = process.env.DBCONNECT
+// const dbURI = 'mongodb://localhost:27017/exercisedb'
+const dbURI = process.env.DBCONNECT
 
 const createUser = (user, res) => {
   MongoClient.connect(dbURI, (err, conn) => {
     if (err) throw err
     else {
-      const data = conn.db("exercisedb");
+      const data = conn.db("wme-exercisedb")
+      console.log('Connection established to', dbURI)
       data.collection("journal").findOne({ 'username': user }, (err, doc) => {
       if (doc != null) { 
         res.send(`username "${user}" already exists`) 
@@ -54,7 +55,7 @@ const addExercise = (exercise, res) => {
   MongoClient.connect(dbURI, (err, conn) => {
     if (err) throw err
     else {
-      const data = conn.db("exercisedb");
+      const data = conn.db("wme-exercisedb");
       data.collection("journal").findOne({ '_id': userId }, (err, doc) => {
         const user = doc.username
         if (doc === null) {
@@ -76,7 +77,7 @@ const addExercise = (exercise, res) => {
             let workout = {
               username: user,
               description: description,
-              duratin: duration,
+              duration: duration,
               _id: userId,
               date: exerciseDate,
             }
@@ -95,7 +96,7 @@ const listUsers = (res) => {
   MongoClient.connect(dbURI, (err, conn) => {
     if (err) { throw err }
     else {
-      const data = conn.db("exercisedb");
+      const data = conn.db("wme-exercisedb");
       data.collection("journal").find()
         .toArray((err, results) => {
           var displayList = [];
@@ -119,7 +120,7 @@ const displayUser = (userId, startDate, endDate, limit, res) => {
   MongoClient.connect(dbURI, (err, conn) => {
     if (err) throw err
     else {
-      const data = conn.db("exercisedb");
+      const data = conn.db("wme-exercisedb");
       const userData = data.collection("journal").find({"_id": userId})
       userData.toArray((err, results) => {
         if (err) throw err
