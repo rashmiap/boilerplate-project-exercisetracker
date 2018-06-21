@@ -72,7 +72,7 @@ const addExercise = (exercise, res) => {
             duration: duration,
             date: exerciseDate,
           }
-          data.collection("journal").update({ _id: userId }, { $push: { activities: workout } }, (err, doc) => {
+          data.collection("journal").update({ _id: userId }, { $push: { log: workout } }, (err, doc) => {
             if (err) throw err;
             let workout = {
               username: user,
@@ -128,27 +128,27 @@ const displayUser = (userId, startDate, endDate, limit, res) => {
         if (results.length < 1) {
           res.json({ ERROR: "User not found in the database." })
         } else {
-          var journal = []
+          var logEntries = []
           var displayList = results.map(result => {
             if (startDate !== '' && endDate !== '') {
-              var log = result.activities.filter(activity => { return activity.date >= startDate && activity.date <= endDate })
-            } else { var log = result.activities }
+              var log = result.log.filter(activity => { return activity.date >= startDate && activity.date <= endDate })
+            } else { var log = result.log }
             if (limit > '') {
               var loopLength = log.length - (log.length - limit)
             } else {
                 var loopLength = log.length
             }
             for (i = 0; i < loopLength; i++) {
-              journal.push(log[i])
+              logEntries.push(log[i])
             }
             return {
               "username": result.username,
               "_id": result._id,
-              "count": journal.length,
-              "activities": journal,
+              "count": logEntries.length,
+              "log": logEntries,
             }
           })
-          if (journal.length < 1) {
+          if (logEntries.length < 1) {
             res.send({ERROR: "There are no activity records in the specified dates "})
           } else { 
               res.send(displayList) 
