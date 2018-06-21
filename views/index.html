@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 
-   <head>
-      <title>Exercise Journal</title>
-      <link rel="shortcut icon" href="https://cdn.hyperdev.com/us-east-1%3A52a203ff-088b-420f-81be-45bf559d01b1%2Ffavicon.ico" type="image/x-icon"/>
-      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
-      <link href="style.css" rel="stylesheet" type="text/css">
-   </head>
+  <head>
+    <title>Exercise Journal</title>
+    <link rel="shortcut icon" href="https://cdn.hyperdev.com/us-east-1%3A52a203ff-088b-420f-81be-45bf559d01b1%2Ffavicon.ico" type="image/x-icon"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
 
    <body>
   <!-- Navigation Menu -->
@@ -47,38 +47,73 @@
     <a href="#users" class="nav-link side-nav-link">Users</a>
     <a href="#journal" class="nav-link side-nav-link contact-btn">View Journal</a>
   </div>
-
-
-      <div class="container">
-         <h1>Exercise tracker</h1>
-          <form action="/api/exercise/new-user" method="post">
-            <h3>Create a New User</h3>
+  <section id="home">
+    <div class="container">
+      <h1 id="headline">Exercise tracker</h1>
+    </div>
+  </section>
+  
+    <div class="container" id="main">
+      <!-- Add User -->
+      <section id="add-user">
+        <div class="container">
+          <h3 class="section-title">Create a New User</h3>
+          <div class="section-text">
             <p><code>POST /api/exercise/new-user</code></p>
+          </div>
+          <form action="/api/exercise/new-user" method="post">
             <input id="uname" type="text" name="username" placeholder="username">
             <input type="submit" value="Submit">
           </form>
-          <form action="/api/exercise/add" method="post">
-            <h3>Add exercises</h3>
+        </div>
+      </section>
+
+      <!-- Add Exercise -->
+      <section id="add-exercise">
+        <div class="container">
+          <h3 class="section-title">Add exercises</h3>
+          <div class="section-text">
             <p><code>POST /api/exercise/add</code></p>
+          </div>
+          <form action="/api/exercise/add" method="post">
             <input id="uid" type="text" name="userId" placeholder="userId*">
             <input id="desc" type="text" name="description" placeholder="description*">
             <input id="dur" type="text" name="duration" placeholder="duration* (mins.)">
             <input id="dat" type="date" name="date" placeholder="date (yyyy-mm-dd)">
             <input type="submit" value="Submit">
           </form>
+        </div>
+      </section>
+      
+      <!-- List Users -->
+      <section id="users">
+        <div class="container">
+          <h3 class="section-title">List Users</h3>
+          <div class="section-text">
+            <p></p>
+          </div>
           <form action="/api/exercise/users">
-            <h3>List Users</h3>
             <input type="submit" value="Submit">
           </form>
+        </div>
+      </section>
+
+      <!-- View Journal -->
+      <section id="journal">
+        <div class="container">
+          <h3 class="section-title">Get User's Exercise Log</h3>
+          <div class="section-text">
+            <p></p>
+          </div>
           <form action="/api/exercise/log">
-            <h3>Get User's Exercise Log</h3>
             <input id="uidlog" type="text" name="userId" placeholder="userId*">
             <input id="fromDat" type="date" name="startDate" placeholder="date (yyyy-mm-dd)">
             <input id="toDat" type="date" name="endDate" placeholder="date (yyyy-mm-dd)">
             <input id="limit" type="number" name="limit" placeholder="limit">
             <input type="submit" value="Submit">
           </form>
-      </div>
-   </body>
-
+        </div>
+      </section>
+    </div>
+  </body>
 </html>
