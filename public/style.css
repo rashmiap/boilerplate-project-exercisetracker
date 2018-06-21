@@ -171,6 +171,11 @@ nav {
   border-radius: 0%;
 }
 
+.active {
+  border-bottom: 2px solid var(--text-primary-color);
+  border-radius: 0%;
+}
+
 #menu-small {
   display: none;
   color: var(--text-primary-color);
