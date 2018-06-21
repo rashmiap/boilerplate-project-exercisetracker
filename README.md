@@ -1,6 +1,6 @@
-# Exercise Tracker
+# Exercise Journal App
 
-An exercise journal app
+An online app that records exercise activity
 
 ### Development
     * Frontend is built using HTML/CSS
