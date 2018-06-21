@@ -2,13 +2,53 @@
 <html>
 
    <head>
-      <title>Exercise Tracker | Free Code Camp</title>
+      <title>Exercise Journal</title>
       <link rel="shortcut icon" href="https://cdn.hyperdev.com/us-east-1%3A52a203ff-088b-420f-81be-45bf559d01b1%2Ffavicon.ico" type="image/x-icon"/>
       <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
       <link href="style.css" rel="stylesheet" type="text/css">
    </head>
 
    <body>
+  <!-- Navigation Menu -->
+  <nav class="navbar">
+    <div id="logo" class="brand">
+      <a href="#top">Exercise Journal</a>
+    </div>
+    <ul class="navbar-nav">
+      <li>
+        <a href="#add-user" class="nav-link">Add User</a>
+      </li>
+      <li>
+        <a href="#add-exercise" class="nav-link">Add Exercise</a>
+      </li>
+      <li>
+        <a href="#list-users" class="nav-link">Users</a>
+      </li>
+      <li>
+        <a href="#journal" class="nav-link contact-btn">View Journal</a>
+      </li>
+    </ul>
+    <!-- Side Navigation Menu (for smaller screens) -->
+    <div id="menu-small">&#9776;</div>
+  
+  </nav>
+
+  <div id="side-menu" class="side-nav">
+    <!-- <a href="" id="close-slide">&times;</a> -->
+    <div class="form-header">
+      <p class="brand">
+        <a href="#top">Exercise Journal</a>
+      </p>
+      <i id="close-slide" class="far fa-times-circle"></i>
+    </div>
+    <hr>
+    <a href="#add-user" class="nav-link side-nav-link">Add User</a>
+    <a href="#add-exercise" class="nav-link side-nav-link">Add Exercise</a>
+    <a href="#users" class="nav-link side-nav-link">Users</a>
+    <a href="#journal" class="nav-link side-nav-link contact-btn">View Journal</a>
+  </div>
+
+
       <div class="container">
          <h1>Exercise tracker</h1>
           <form action="/api/exercise/new-user" method="post">
