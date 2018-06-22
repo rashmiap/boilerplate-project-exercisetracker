@@ -126,23 +126,32 @@ const displayUser = (userId, startDate, endDate, limit, res) => {
         } else {
           var logEntries = []
           var displayList = results.map(result => {
-            if (startDate !== '' && endDate !== '') {
-              var log = result.log.filter(activity => { return activity.date >= startDate && activity.date <= endDate })
-            } else { var log = result.log }
-            if (limit > '') {
-              var loopLength = log.length - (log.length - limit)
+            if (result.log === undefined) {
+              res.send({ ERROR: "There are no activity records for this user " })
             } else {
-                var loopLength = log.length
-            }
-            for (i = 0; i < loopLength; i++) {
-              logEntries.push(log[i])
-            }
-            return {
-              "username": result.username,
-              "_id": result._id,
-              "count": logEntries.length,
-              "log": logEntries,
-            }
+                if (startDate !== '' && endDate !== '') {
+                  var log = result.log.filter(activity => { return activity.date >= startDate && activity.date <= endDate })
+                } else {
+                  var log = result.log
+                }
+                console.log(result.log)
+
+                if (limit > '') {
+                  var loopLength = log.length - (log.length - limit)
+                } else {
+                  var loopLength = log.length
+                }
+                for (i = 0; i < loopLength; i++) {
+                  logEntries.push(log[i])
+                }
+
+                return {
+                  "username": result.username,
+                  "_id": result._id,
+                  "count": logEntries.length,
+                  "log": logEntries,
+                }
+              }
           })
           if (logEntries.length < 1) {
             res.send({ERROR: "There are no activity records in the specified dates "})
