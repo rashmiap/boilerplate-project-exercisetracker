@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Exercise Journal</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+      crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
     <link href="style.css" rel="stylesheet" type="text/css">
   </head>
@@ -19,19 +21,19 @@
       <nav class="navbar">
         <ul class="navbar-nav">
           <li>
-            <a href="/" class="nav-link active">Home</a>
+            <a href="/" class="nav-link active home-btn">Home</a>
           </li>
           <li>
-            <a href="#add-user" class="nav-link">Add User</a>
+            <a href="#add-user" class="nav-link add-user-btn">Add User</a>
           </li>
           <li>
-            <a href="#add-exercise" class="nav-link">Add Exercise</a>
+            <a href="#add-exercise" class="nav-link exercise-btn">Add Exercise</a>
           </li>
           <li>
-            <a href="#list-users" class="nav-link">Users</a>
+            <a href="#users" class="nav-link users-btn">Users</a>
           </li>
           <li>
-            <a href="#journal" class="nav-link contact-btn">View Journal</a>
+            <a href="#journal" class="nav-link journal-btn">View Journal</a>
           </li>
         </ul>
         <!-- Side Navigation Menu (for smaller screens) -->
@@ -44,9 +46,8 @@
 
     <!-- Side Navigation Menu -->
     <div id="side-menu" class="side-nav">
-      <a href="" id="close-slide">&times;</a>
       <div class="form-header">
-        <p class="brand">
+        <p>
           <a href="#top">Exercise Journal</a>
         </p>
         <i id="close-slide" class="far fa-times-circle"></i>
@@ -148,7 +149,35 @@
         </div>
       </section>
     </div>
-      <!-- Custom script -->
+      <footer>
+        <div class="cta-group">
+          <div class="cta-text">
+            <p>Need help with your project?</p>
+          </div>
+          <button id="footer-cta-btn" class="cta-btn contact-btn">CONTACT ME</button>
+        </div>
+      
+        <div class="social-media-group">
+          <div class="social-cta">
+            <p>Connect with me:</p>
+          </div>
+          <div class="social-media-icons">
+            <a href="https://www.linkedin.com/in/wilfredmorgan/" target="_blank">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/wmemorgan" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="#contact" class="contact-btn">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+        <div id="copyright-info">
+          <p><a href="https://wilfredmorgan.com">wilfredmorgan.com</a></p>
+        </div>
+      </footer>
+    <!-- Custom script -->
     <script src="script.js"></script>
   </body>
 </html>

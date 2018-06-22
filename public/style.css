@@ -64,7 +64,7 @@ form {
   margin: 0 auto;
   /* margin-bottom: 25px; */
   padding: 15px;
-  background-color: #87D37C;
+  background: var(--overlay-bg-color);
   display: block;
   width: 100%;
   max-width: 340px;
@@ -211,6 +211,7 @@ nav {
 
 .side-nav .form-header {
   width: 90%;
+  display: grid;
   grid-template-columns: 1fr 0.4rem;
   grid-column-gap: 0.35rem;
   padding: 0;
@@ -223,7 +224,7 @@ nav {
 }
 
 .form-header #close-slide {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 .side-nav a {
@@ -296,6 +297,95 @@ section .container {
   padding-bottom: 1rem;
 }
 
+/*-------footer------*/
+footer {
+  color: var(--text-primary-color);
+  background-color: var(--dark-primary-color);
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  grid-gap: 1rem;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+footer * {
+  color: var(--text-primary-color);
+  text-decoration: none;
+}
+
+footer a:hover, footer button:hover{
+  border-bottom: 2px solid var(--text-primary-color);
+  border-radius: 0%;
+  /* background-color: var(--text-primary-color);
+  color: var(--dark-primary-color); */
+}
+
+/* footer .cta-group {
+  grid-column: span 2;
+} */
+
+footer .cta-btn {
+  width: 30vw;
+  font-weight: bold;
+  color: var(--text-primary-color);
+  background-color: var(--accent-color);
+  border: 1px solid var(--text-primary-color);
+  border-radius: 4px;
+  margin-top: 0.3rem;
+  padding: 0.5rem;
+}
+
+footer .social-media-group {
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+footer .social-cta {
+  font-size: 0.85rem;
+  height: 1.25rem;
+  
+}
+
+footer .social-media-icons {
+  font-size: 1rem;
+  /* padding: 0.5rem; */
+  letter-spacing: 0.25rem;
+}
+
+footer .social-media-group {
+  text-transform: uppercase;
+}
+footer #copyright-info {
+  font-size: 0.85rem;
+}
+
+
+#add-user {
+  display: none;
+}
+#add-exercise {
+  display: none;
+}
+#users {
+  display: none;
+}
+#journal {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.invisible {
+  display: none;
+}
+
+
 /*------Responsive design------*/
 @media only screen and (max-width: 568px) {
   nav {
@@ -327,5 +417,32 @@ section .container {
   .section-text {
     padding: 0 1.5vw;
   }
+
+  /*---footer----*/
+  footer {
+    margin-top: 0;
+    font-size: 0.75rem;
+  }
+
+  footer .cta-btn {
+    width: 40vw;  
+    font-size: 0.75rem;  
+    padding: 0.25rem 0.5rem;
+  }
+
+  footer .social-media-group {
+    padding: 0;
+  }
+
+  footer .social-media-icons {
+    padding: 0;
+    text-align: center;
+    letter-spacing: 0.5rem;
+  }
+
+  footer .social-cta {
+    display: none;
+  }
+
 
 }
