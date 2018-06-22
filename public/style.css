@@ -249,12 +249,12 @@ nav {
   background: var(--default-primary-color); */
   text-align: center; 
   /* padding: 10vh 10vw; */
-  padding-top: 25.25%;
+  padding-top: 10.25%;
   border-bottom: 1px solid var(--default-primary-color)
 }
 
 #headline {
-  font-size: 9vh;
+  font-size: 7vh;
   text-transform: uppercase;
 }
 
@@ -388,6 +388,16 @@ footer #copyright-info {
 
 
 /*------Responsive design------*/
+@media only screen and (max-width: 768px) {
+   #intro {
+    padding-top: 15.25%;
+  }
+
+  #headline {
+    font-size: 6vh;
+  }
+}
+
 @media only screen and (max-width: 568px) {
   nav {
     padding: 0 0.5rem;
@@ -396,6 +406,10 @@ footer #copyright-info {
   /*----home----*/
   .brand a {
     font-size: 1rem;
+  }
+
+  #intro {
+    padding-top: 25.25%;
   }
 
     /*----navigation----*/
