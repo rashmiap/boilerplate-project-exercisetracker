@@ -21,11 +21,13 @@ Go to API demo app:
 ```POST /api/exercise/new-user```
 
 #### Add Exercise
-```POST /api/exercise/new-user```
+```POST /api/exercise/add```
 
 #### List Users
-```GET /api/exercise/add```
+```GET /api/exercise/users```
 
 #### View Exercise Journal
-```GET /api/exercise/log?{userId}[&from][&to][&limit]```
+```GET /api/exercise/log?userId=USERID&startDate=YYYY-MM-DD&endDate=YYYY-MM-DD&limit=6
+
+** The date and limit parameters are optional
 
