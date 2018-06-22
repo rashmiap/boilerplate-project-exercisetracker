@@ -1,10 +1,10 @@
-# Exercise Journal App
+# Exercise Journal API
 
-An online app that records exercise activity
+A REST API that processes exercise activity
 
 ### Development
-    * Frontend is built using HTML/CSS
-    * Middleware is a REST API handles data creation, updates, and retrieval
+    * Frontend is built using HTML/CSS and is used to demo API functions
+    * API is built using Node/Express and handles data creation, updates, and retrieval
     * Backend is a MongoDB document database that stores user and exercise data
 
 ### User Stories:
@@ -14,7 +14,18 @@ An online app that records exercise activity
     4. I can retrieve part of the log of any user by also passing along optional parameters of from & to or limit. (Date format yyyy-mm-dd, limit = int)
 
 ### Usage:
-Go to:
+Go to API demo app:
 [https://wme-exercisetracker.glitch.me/]('https://wme-exercisetracker.glitch.me/')
 
+#### Create a New User
+```POST /api/exercise/new-user```
+
+#### Add Exercise
+```POST /api/exercise/new-user```
+
+#### List Users
+```GET /api/exercise/add```
+
+#### View Exercise Journal
+```GET /api/exercise/log?{userId}[&from][&to][&limit]```
 
