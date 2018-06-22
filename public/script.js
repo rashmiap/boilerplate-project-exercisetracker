@@ -2,6 +2,12 @@
 const openSlideButton = document.getElementById('menu-small')
 const closeSlideButton = document.getElementById('close-slide')
 const sideNavLink = document.getElementsByClassName('side-nav-link')
+const iframe = document.getElementById('formsFrame')
+const homeButton = document.getElementsByClassName('home-btn')
+const addUserButton = document.getElementsByClassName('add-user-btn')
+const logExerciseButton = document.getElementsByClassName('exercise-btn')
+const listUsersButton = document.getElementsByClassName('users-btn')
+const viewJournalButton = document.getElementsByClassName('journal-btn')
 
 /*-----Global functions-----*/
 const pageReload = _ => {
@@ -57,3 +63,31 @@ closeSlideButton.addEventListener("click", closeSlideMenu);
 for (let i = 0; i < sideNavLink.length; i++) {
   sideNavLink[i].addEventListener("click", closeSlideMenu)
 }
+
+/*-----Forms----*/
+const hideElement = () => {
+  if (iframe.contentWindow.document.querySelector('.visible')) {
+    iframe.contentWindow.document.querySelector('.visible').classList.add('invisible')
+    iframe.contentWindow.document.querySelector('.visible').classList.remove('visible')
+  }
+}
+
+const showElement= (item) => {
+  
+  return () => {
+    let element = iframe.contentWindow.document.querySelector(`${item}`)
+    if (iframe.contentWindow.document.querySelector(`.visible`)) {
+      hideElement()
+    }
+    element.classList.remove('invisible')
+    element.classList.add('visible')
+  }
+}
+
+for (let i = 0; i < document.getElementsByClassName('nav-link').length; i++) {
+  let element = document.getElementsByClassName('nav-link')[i]
+  let referenceElem = document.getElementsByClassName('nav-link')[i].getAttribute('href')
+  element.addEventListener("click", showElement(referenceElem))
+}
+
+
