@@ -19,7 +19,6 @@ const createUser = (user, res) => {
     if (err) throw err
     else {
       const data = conn.db("wme-exercisedb")
-      console.log('Connection established to', dbURI)
       data.collection("journal").findOne({ 'username': user }, (err, doc) => {
       if (doc != null) { 
         res.send(`username "${user}" already exists`) 
@@ -134,7 +133,6 @@ const displayUser = (userId, startDate, endDate, limit, res) => {
                 } else {
                   var log = result.log
                 }
-                console.log(result.log)
 
                 if (limit > '') {
                   var loopLength = log.length - (log.length - limit)
@@ -153,10 +151,16 @@ const displayUser = (userId, startDate, endDate, limit, res) => {
                 }
               }
           })
-          if (logEntries.length < 1) {
-            res.send({ERROR: "There are no activity records in the specified dates "})
-          } else { 
-              res.send(displayList) 
+
+          try {
+              if (logEntries.length < 1) {
+                res.send({ERROR: "There are no activity records in the specified dates "})
+              } else { 
+                  res.send(displayList) 
+              }
+          }
+          finally {
+            return
           }
         }
       })
