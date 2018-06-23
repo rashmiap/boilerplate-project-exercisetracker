@@ -14,20 +14,63 @@ A REST API that processes exercise activity
     4. I can retrieve part of the log of any user by also passing along optional parameters of from & to or limit. (Date format yyyy-mm-dd, limit = int)
 
 ### Usage:
-Go to API demo app:
-[https://wme-exercisetracker.glitch.me/]('https://wme-exercisetracker.glitch.me/')
 
 #### Create a New User
-```POST /api/exercise/new-user```
+Endpoint:
+```/api/exercise/new-user```
+
+Method: 
+```POST```
+
+BODY:
+```
+{
+    username: '<NEW USERNAME>'
+}
+```
 
 #### Add Exercise
-```POST /api/exercise/add```
+Endpoint:
+```/api/exercise/add```
+
+Method: 
+```POST```
+
+BODY:
+```
+{
+    description: '<DESCRIPTION>',
+    duration: '<DURATION>',
+    date: '<YYYY-MM-DD>', //Default current date
+}
+```
 
 #### List Users
-```GET /api/exercise/users```
+Endpoint:
+```/api/exercise/users```
+
+Method: 
+```GET```
 
 #### View Exercise Journal
-```GET /api/exercise/log?userId=USERID&startDate=YYYY-MM-DD&endDate=YYYY-MM-DD&limit=6
+Endpoint:
+```/api/exercise/log
+```
 
-** The date and limit parameters are optional
+Method:
+```GET```
 
+Parameters:
+```userId = <USERID>```
+```startDate = <YYYY-MM-DD>```**
+```endDate = <YYYY-MM-DD>```**
+```limit = <INTEGER>```**
+
+** Optional. Default parameters will display all records.
+
+**Example:**
+```/api/exercise/log?userId=sammy&startDate=2018-05-01&endDate=2018-05-31&limit=5
+```
+
+**Go to API demo app:**
+[https://wme-exercisetracker.glitch.me/]('https://wme-exercisetracker.glitch.me/')
