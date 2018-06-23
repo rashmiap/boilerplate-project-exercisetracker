@@ -14,8 +14,8 @@
     <!-- User Stories -->
     <section class="visible" id="home">
       <div class="container">
-        <h3 class="section-title">User Stories:</h3>
-        <div class="section-text">
+        <h3 class="section-title">User Stories</h3>
+        <div class="section-doc">
           <ol>
             <li>
               I can create a user by posting form data username to /api/exercise/new-user and returned will be an object with username
@@ -42,9 +42,11 @@
       <div class="container">
         <h3 class="section-title">Create a New User</h3>
         <div class="section-text">
+          <p>Direct API access:</p>
           <p>
             <code>POST /api/exercise/new-user</code>
           </p>
+          <p>You can demo the API using the form below</p>
         </div>
         <form action="/api/exercise/new-user" method="post">
           <input id="uname" type="text" name="username" placeholder="username">
@@ -58,9 +60,11 @@
       <div class="container">
         <h3 class="section-title">Add exercises</h3>
         <div class="section-text">
+          <p>Direct API access:</p>
           <p>
             <code>POST /api/exercise/add</code>
           </p>
+          <p>You can demo the API using the form below</p>
         </div>
         <form action="/api/exercise/add" method="post">
           <input id="uid" type="text" name="userId" placeholder="userId*">
@@ -77,7 +81,11 @@
       <div class="container">
         <h3 class="section-title">List Users</h3>
         <div class="section-text">
-          <p></p>
+          <p>Direct API access:</p>
+          <p>
+            <code>POST /api/exercise/users</code>
+          </p>
+          <p>You can demo the API using the form below</p>
         </div>
         <form action="/api/exercise/users">
           <input type="submit" value="Submit">
@@ -90,7 +98,13 @@
       <div class="container">
         <h3 class="section-title">Get User's Exercise Log</h3>
         <div class="section-text">
-          <p></p>
+          <p>Direct API access:</p>
+          <p>
+            <code>GET /api/exercise/log?userId=USERID&startDate=YYYY-MM-DD&endDate=YYYY-MM-DD&limit=6</code>
+          </p>
+          <p>** The date and limit parameters are optional</p>
+          <p>You can demo the API using the form below</p>
+          </div>
         </div>
         <form action="/api/exercise/log">
           <input id="uidlog" type="text" name="userId" placeholder="userId*">
