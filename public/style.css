@@ -258,15 +258,6 @@ nav {
   text-transform: uppercase;
 }
 
-/*---main content---*/
-/* #main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-  overflow: hidden;
-  transition: margin-left 0.5s;
-} */
-
 /*-----section----*/
 section {
   margin: 0 auto;
@@ -304,8 +295,8 @@ section .container {
 .section-text {
   color: var(--primary-text-color);
   max-width: 850px;
-  padding: 0 18vw;
-  text-align: left;
+  padding: 0 10vw;
+  text-align: center;
   margin: 0 auto;
 }
 
@@ -409,6 +400,10 @@ footer #copyright-info {
   #headline {
     font-size: 6vh;
   }
+
+  section .container {
+    padding: 0.25rem;
+  }
 }
 
 @media only screen and (max-width: 568px) {
@@ -442,11 +437,11 @@ footer #copyright-info {
   }
 
   /*----section----*/
-  .section-text {
+  /* .section-text {
     margin: 0 auto;
     padding: 0 10vw;
     
-  }
+  } */
 
   /*---footer----*/
   footer {
