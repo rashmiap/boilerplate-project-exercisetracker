@@ -42,9 +42,17 @@
       <div class="container">
         <h3 class="section-title">Create a New User</h3>
         <div class="section-text">
-          <p>Direct API access:</p>
+          <h4>Endpoint:</h4>
+          <p><code>/api/exercise/new-user</code></p>
+          
+          <h4>Method:</h4>
+          <p><code>POST</code></p>
+          
+          <h4>Body:</h4>
           <p>
-            <code>POST /api/exercise/new-user</code>
+            <code>
+              { username: 'USERNAME' }
+            </code>
           </p>
           <p>You can demo the API using the form below</p>
         </div>
@@ -60,10 +68,21 @@
       <div class="container">
         <h3 class="section-title">Add exercises</h3>
         <div class="section-text">
-          <p>Direct API access:</p>
+          <h4>Endpoint:</h4>
+          <p><code>/api/exercise/add</code></p>
+          
+          <h4>Method:</h4>
+          <p><code>POST</code></p>
+          
+          <h4>Body:</h4>
           <p>
-            <code>POST /api/exercise/add</code>
+            <code>
+               { description: 'DESCRIPTION', duration: 'DURATION', date: 'YYYY-MM-DD',++ }
+            </code>
+          <p>
+             ++Optional field. The default value is the current date.
           </p>
+
           <p>You can demo the API using the form below</p>
         </div>
         <form action="/api/exercise/add" method="post">
@@ -81,10 +100,12 @@
       <div class="container">
         <h3 class="section-title">List Users</h3>
         <div class="section-text">
-          <p>Direct API access:</p>
-          <p>
-            <code>POST /api/exercise/users</code>
-          </p>
+          <h4>Endpoint:</h4>
+          <p><code>/api/exercise/users</code></p>
+          
+          <h4>Method:</h4>
+          <p><code>POST</code></p>
+
           <p>You can demo the API using the form below</p>
         </div>
         <form action="/api/exercise/users">
@@ -96,11 +117,33 @@
     <!-- View Journal -->
     <section id="journal" class="invisible">
       <div class="container">
-        <h3 class="section-title">Get User's Exercise Log</h3>
+        <h3 class="section-title">View Exercise Journal</h3>
         <div class="section-text">
-          <p>Direct API access:</p>
+          <h4>Endpoint:</h4>
+          <p><code>/api/exercise/log</code></p>
+          
+          <h4>Method:</h4>
+          <p><code>GET</code></p>
+          
+          <h4>Parameters:</h4>
           <p>
-            <code>GET /api/exercise/log?userId=USERID&startDate=YYYY-MM-DD&endDate=YYYY-MM-DD&limit=6</code>
+            <code>userId=USERID</code>
+          </p>
+          <p>
+            <code>startDate=YYYY-MM-DD</code>
+          </p>
+          <p>
+            <code>endDate=YYYY-MM-DD</code>
+          </p>
+          <p>
+            <code>limit=INTEGER</code>
+          </p>
+
+          <h4>Example:</h4>
+          <p>
+            <code>
+               /api/exercise/log?userId=sammy&startDate=2018-05-01&endDate=2018-05-31&limit=5
+            </code>
           </p>
           <p>** The date and limit parameters are optional</p>
           <p>You can demo the API using the form below</p>

@@ -27,7 +27,7 @@ A REST API that processes exercise activity
 **Body:**
 ```
 {
-    username: '<NEW USERNAME>'
+    username: 'USERNAME'
 }
 ```
 ---
@@ -41,9 +41,9 @@ A REST API that processes exercise activity
 **Body:**
 ```
 {
-    description: '<DESCRIPTION>',
-    duration: '<DURATION>',
-    date: '<YYYY-MM-DD>',++
+    description: 'DESCRIPTION',
+    duration: 'DURATION',
+    date: 'YYYY-MM-DD',++
 }
 ```
 ++*Optional field. The default value is the current date.*
@@ -66,10 +66,10 @@ A REST API that processes exercise activity
 ```GET```
 
 **Parameters:**
-```userId = <USERID>```
-```startDate = <YYYY-MM-DD>```**
-```endDate = <YYYY-MM-DD>```**
-```limit = <INTEGER>```**
+```userId=USERID```
+```startDate=YYYY-MM-DD```**
+```endDate=YYYY-MM-DD```**
+```limit=INTEGER```**
 
 ** *Optional. Default parameters will display all records.*
 
