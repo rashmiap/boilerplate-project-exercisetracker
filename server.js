@@ -43,6 +43,7 @@ const createUser = (user, res) => {
     }
   })
 }
+
 const addExercise = (exercise, res) => {
   const { userId, description, duration } = exercise
   MongoClient.connect(dbURI, (err, conn) => {
@@ -111,7 +112,7 @@ const listUsers = (res) => {
   })
 }
 
-const displayUser = (userId, startDate, endDate, limit, res) => {
+const displayUser = (userId, startDate='', endDate='', limit='', res) => {
   MongoClient.connect(dbURI, (err, conn) => {
     if (err) throw err
     else {
