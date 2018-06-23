@@ -18,13 +18,13 @@ A REST API that processes exercise activity
 ---
 ### Usage:
 #### Create a New User
-Endpoint:
+**Endpoint:**
 ```/api/exercise/new-user```
 
-Method: 
+**Method:** 
 ```POST```
 
-BODY:
+**Body:**
 ```
 {
     username: '<NEW USERNAME>'
@@ -32,13 +32,13 @@ BODY:
 ```
 ---
 #### Add Exercise
-Endpoint:
+**Endpoint:**
 ```/api/exercise/add```
 
-Method: 
+**Method:** 
 ```POST```
 
-BODY:
+**Body:**
 ```
 {
     description: '<DESCRIPTION>',
@@ -50,28 +50,28 @@ BODY:
 
 ---
 #### List Users
-Endpoint:
+**Endpoint:**
 ```/api/exercise/users```
 
-Method: 
+**Method:** 
 ```GET```
 
 ---
 #### View Exercise Journal
-Endpoint:
+**Endpoint:**
 ```/api/exercise/log
 ```
 
-Method:
+**Method:**
 ```GET```
 
-Parameters:
+**Parameters:**
 ```userId = <USERID>```
 ```startDate = <YYYY-MM-DD>```**
 ```endDate = <YYYY-MM-DD>```**
 ```limit = <INTEGER>```**
 
-** Optional. Default parameters will display all records.
+** *Optional. Default parameters will display all records.*
 
 **Example:**
 ```/api/exercise/log?userId=sammy&startDate=2018-05-01&endDate=2018-05-31&limit=5
