@@ -44,17 +44,19 @@
         <div class="section-text">
           <h4>Endpoint:</h4>
           <p><code>/api/exercise/new-user</code></p>
-          
+          <br>
           <h4>Method:</h4>
           <p><code>POST</code></p>
-          
+          <br>
           <h4>Body:</h4>
           <p>
             <code>
               { username: 'USERNAME' }
             </code>
           </p>
+          <br>
           <p>You can demo the API using the form below</p>
+          <br>
         </div>
         <form action="/api/exercise/new-user" method="post">
           <input id="uname" type="text" name="username" placeholder="username">
@@ -70,20 +72,23 @@
         <div class="section-text">
           <h4>Endpoint:</h4>
           <p><code>/api/exercise/add</code></p>
-          
+          <br>
           <h4>Method:</h4>
           <p><code>POST</code></p>
-          
+          <br>
           <h4>Body:</h4>
           <p>
             <code>
                { description: 'DESCRIPTION', duration: 'DURATION', date: 'YYYY-MM-DD',++ }
             </code>
+          </p>
+          <br>
           <p>
              ++Optional field. The default value is the current date.
           </p>
-
+          <br>
           <p>You can demo the API using the form below</p>
+          <br>
         </div>
         <form action="/api/exercise/add" method="post">
           <input id="uid" type="text" name="userId" placeholder="userId*">
@@ -102,11 +107,12 @@
         <div class="section-text">
           <h4>Endpoint:</h4>
           <p><code>/api/exercise/users</code></p>
-          
+          <br>
           <h4>Method:</h4>
           <p><code>POST</code></p>
-
+          <br>
           <p>You can demo the API using the form below</p>
+          <br>
         </div>
         <form action="/api/exercise/users">
           <input type="submit" value="Submit">
@@ -121,10 +127,10 @@
         <div class="section-text">
           <h4>Endpoint:</h4>
           <p><code>/api/exercise/log</code></p>
-          
+          <br>
           <h4>Method:</h4>
           <p><code>GET</code></p>
-          
+          <br>
           <h4>Parameters:</h4>
           <p>
             <code>userId=USERID</code>
@@ -138,15 +144,17 @@
           <p>
             <code>limit=INTEGER</code>
           </p>
-
+          <br>
           <h4>Example:</h4>
           <p>
             <code>
                /api/exercise/log?userId=sammy&startDate=2018-05-01&endDate=2018-05-31&limit=5
             </code>
           </p>
+          <br>
           <p>** The date and limit parameters are optional</p>
           <p>You can demo the API using the form below</p>
+          <br>
           </div>
         </div>
         <form action="/api/exercise/log">

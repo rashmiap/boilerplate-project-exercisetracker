@@ -5,7 +5,7 @@
 :root {
   --dark-primary-color: #022140;
   --default-primary-color: #265077;
-  --light-primary-color: #C5CAE9;
+  --light-primary-color: #e4e5eb;
   --text-primary-color: #FFFFFF;
   --accent-color: #51a7f8;
   --primary-bg-color: #FFFFFF;
@@ -99,7 +99,7 @@ code {
   font-family: monospace;
   font-size: 1.2em;
   background-color: var(--light-primary-color);
-  padding: 2px;
+  padding: 0.25rem;
 }
 
 /*-----page header-----*/
@@ -294,13 +294,12 @@ section .container {
 
 .section-text {
   color: var(--primary-text-color);
+  /* background: #C5CAE9; */
   max-width: 850px;
-  padding: 0 10vw;
-  text-align: center;
+  padding: 0 0 0 18vw;
+  text-align: left;
   margin: 0 auto;
 }
-
-
 
 /*-----iframe-----*/
 .resp-container {
@@ -437,11 +436,10 @@ footer #copyright-info {
   }
 
   /*----section----*/
-  /* .section-text {
-    margin: 0 auto;
+  .section-text {
     padding: 0 10vw;
     
-  } */
+  }
 
   /*---footer----*/
   footer {
