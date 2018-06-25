@@ -59,8 +59,7 @@ A REST API that processes exercise activity
 ---
 #### View Exercise Journal
 **Endpoint:**
-```/api/exercise/log
-```
+```/api/exercise/log```
 
 **Method:**
 ```GET```
@@ -74,8 +73,7 @@ A REST API that processes exercise activity
 ** *Optional. Default parameters will display all records.*
 
 **Example:**
-```/api/exercise/log?userId=sammy&startDate=2018-05-01&endDate=2018-05-31&limit=5
-```
+```/api/exercise/log?userId=sammy&startDate=2018-05-01&endDate=2018-05-31&limit=5```
 
 ---
 **Go to API demo app:**
