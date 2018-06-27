@@ -50,29 +50,29 @@ A REST API that processes exercise activity
 
 ---
 #### List Users
-**Endpoint:**
+**Endpoint:**  
 ```/api/exercise/users```
 
-**Method:** 
+**Method:**  
 ```GET```
 
 ---
 #### View Exercise Journal
-**Endpoint:**
+**Endpoint:**  
 ```/api/exercise/log```
 
-**Method:**
+**Method:**  
 ```GET```
 
-**Parameters:**
-```userId=USERID```
-```startDate=YYYY-MM-DD```**
-```endDate=YYYY-MM-DD```**
+**Parameters:**  
+```userId=USERID```  
+```startDate=YYYY-MM-DD```**  
+```endDate=YYYY-MM-DD```**  
 ```limit=INTEGER```**
 
 ** *Optional. Default parameters will display all records.*
 
-**Example:**
+**Example:**  
 ```/api/exercise/log?userId=sammy&startDate=2018-05-01&endDate=2018-05-31&limit=5```
 
 ---
