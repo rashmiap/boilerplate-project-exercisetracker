@@ -77,4 +77,5 @@ A REST API that processes exercise activity
 
 ---
 **Go to API demo app:**
+
 [https://wme-exercisetracker.glitch.me/](https://wme-exercisetracker.glitch.me/)
