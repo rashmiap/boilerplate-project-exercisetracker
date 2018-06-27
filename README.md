@@ -18,10 +18,10 @@ A REST API that processes exercise activity
 ---
 ### Usage:
 #### Create a New User
-**Endpoint:**
+**Endpoint:**  
 ```/api/exercise/new-user```
 
-**Method:** 
+**Method:**  
 ```POST```
 
 **Body:**
@@ -32,10 +32,10 @@ A REST API that processes exercise activity
 ```
 ---
 #### Add Exercise
-**Endpoint:**
+**Endpoint:**  
 ```/api/exercise/add```
 
-**Method:** 
+**Method:**  
 ```POST```
 
 **Body:**
