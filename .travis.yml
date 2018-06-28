@@ -1,4 +1,2 @@
-language: node_js
-
 after_success:
-  - npx sync-glitch-cli
+  - DEBUG=sync-glitch* sync-glitch
