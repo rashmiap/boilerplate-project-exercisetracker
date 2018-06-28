@@ -217,3 +217,5 @@ app.use((err, req, res, next) => {
 app.listen(port, () => {
   console.log(`App is listening on port ${port}`);
 })
+
+console.log(process.env.PROJECT_ID)

@@ -27,5 +27,8 @@
 		"node",
 		"gomix",
 		"express"
-	]
+	],
+	"devDependencies": {
+		"sync-glitch-cli": "^2.0.1"
+	}
 }
