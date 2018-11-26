@@ -66,8 +66,8 @@ A REST API that processes exercise activity. A micro-service project part of the
 
 **Parameters:**  
 ```userId=USERID```  
-```startDate=YYYY-MM-DD```**  
-```endDate=YYYY-MM-DD```**  
+```from=YYYY-MM-DD```**  
+```to=YYYY-MM-DD```**  
 ```limit=INTEGER```**
 
 ** *Optional. Default parameters will display all records.*
