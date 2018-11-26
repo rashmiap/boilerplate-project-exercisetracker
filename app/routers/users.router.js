@@ -36,7 +36,6 @@ router.get('/users', function(req, res){
 
 // POST add exercises to a particular user
 router.post('/add', function(req, res){
-
   const body = req.body;
   if(!body.description || !body.duration){
     return res.json({error: "Must provide exercise duration and description"})
@@ -54,7 +53,7 @@ router.post('/add', function(req, res){
   User.findOneAndUpdate({_id: body.userId}, {"$push": {"exercise": exercise}}, {new: true}, (err, doc)=> {
     if (err) {
       return res.json(err);
-    };
+    }
     res.json({
       "username": doc.userName,
       "description": body.description,
@@ -63,5 +62,39 @@ router.post('/add', function(req, res){
       "date": body.date? body.date : new Date()
     })
   })
+})
+
+// GET user log of all exercises
+router.get('/log', function(req, res){
+  if(req.query.userId === undefined){
+    res.json({error: "UserID is Required"});
+  }
+  else{
+    User.findById(req.query.userId,  function (err, user) {
+      if (err) {
+        return res.json({error: "Unknown User"});
+      }
+      const limit = Number(req.query.limit);
+      const from = (req.query.from) ? new Date(req.query.from) : null;
+      const to = (req.query.to) ? new Date(req.query.to) : null;
+
+      const resp = {
+        "_id": user._id,
+        "username": user.userName,
+        "count": user.exercise.length,
+        "log": user.exercise
+      };
+      if (from) {
+        resp.log = user.exercise.filter(e => e.date >= from);
+      }
+      if (to) {
+        resp.log = user.exercise.filter(e => e.date <= to);
+      }
+      if (limit > 0) {
+        resp.log = user.exercise.slice(0, limit);
+      }
+      return res.json({resp});
+    })
+  }
 })
 module.exports = router;
