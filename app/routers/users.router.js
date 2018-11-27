@@ -47,7 +47,7 @@ router.post('/add', function(req, res){
   };
   // If date not null, add the date
   if (body.date) {
-    exercise.date = body.date;
+    exercise.date = new Date(body.date);
   }
   // execute the update query
   User.findOneAndUpdate({_id: body.userId}, {"$push": {"exercise": exercise}}, {new: true}, (err, doc)=> {
@@ -59,7 +59,7 @@ router.post('/add', function(req, res){
       "description": body.description,
       "duration": body.duration,
       "_id": body.userId,
-      "date": body.date? body.date : new Date()
+      "date": body.date? new Date(body.date) : new Date()
     })
   })
 })
@@ -85,10 +85,10 @@ router.get('/log', function(req, res){
         "log": user.exercise
       };
       if (from) {
-        resp.log = user.exercise.filter(e => e.date >= from);
+        resp.log = user.exercise.filter(x => x.date > from);
       }
       if (to) {
-        resp.log = user.exercise.filter(e => e.date <= to);
+        resp.log = user.exercise.filter(x => x.date < to);
       }
       if (limit > 0) {
         resp.log = user.exercise.slice(0, limit);

@@ -73,7 +73,7 @@ A REST API that processes exercise activity. A micro-service project part of the
 ** *Optional. Default parameters will display all records.*
 
 **Example:**  
-```/api/exercise/log?userId=sammy&startDate=2018-05-01&endDate=2018-05-31&limit=5```
+```/api/exercise/log?userId=5bfccc12f3829103cd0a89ed&from=2011-06-01&to=2018-12-31&limit=5```
 
 ---
 **Go to API demo app:**
