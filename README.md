@@ -27,7 +27,7 @@ A REST API that processes exercise activity. A micro-service project part of the
 **Body:**
 ```
 {
-    username: 'USERNAME'
+    userName: 'USERNAME'
 }
 ```
 ---
